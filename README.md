@@ -26,8 +26,7 @@ Included is the code necessary to replicate the Seurat objects used for analysis
 *list names of R scripts here*
 
 # Data
-Original Data
-The data analyzed in this project can be directly downloaded from the following source: XXX
+The original data analyzed in this project can be directly downloaded from the following source: XXX
 
 # Acknowledgements
 Data analysis was completed by Philip Hasel and Jessica Sadick.

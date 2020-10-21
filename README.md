@@ -1,7 +1,7 @@
 # Hasel_et_al.
 ALL the mouse astrocytes!
 
-# Code used to analyze single cell RNASeq (scRNAseq) astrocyte data included in:
+Code used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: XXX
 
 # Code
 Included is the code necessary to replicate the Seurat objects used for analysis. The following versions of individual software/packages were used for analysis:
@@ -25,7 +25,7 @@ Code included in repository:
 list names of R scripts here
 
 # Data
-Original Data The data analyzed in this project can be directly downloaded from the following source:
+Original data analyzed in this project can be directly downloaded from the following source: XXX
 
 # Acknowledgements
-Data analysis on astrocytes was completed by Philip Hasel and Jessica Sadick.
+Data analysis was completed by Philip Hasel and Jessica Sadick.

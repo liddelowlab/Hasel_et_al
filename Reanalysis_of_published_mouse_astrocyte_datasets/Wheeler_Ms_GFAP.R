@@ -585,7 +585,7 @@ DimPlot(so_astro, reduction = "tsne", pt.size = 0.001) + theme(aspect.ratio = 1)
 
 VlnPlot(so_astro, features = c("Aqp4", "Gfap", "Fgfr3", "Cldn10", "Gja1", "Aldh1l1", "Slc1a3", "Slc1a2"), pt.size = 0)
 
-FeaturePlot(so_astro, features = c("Ifit3m"), reduction = "tsne", pt.size = 0.001) + theme(aspect.ratio = 1)
+FeaturePlot(so_astro, features = c("Igtp"), reduction = "tsne", pt.size = 0.001) + theme(aspect.ratio = 1)
 
 #---------------------------------------------------------------------------------------------------
 #MAKE FINAL ASTROCYTE-SPECIFIC SeuratObject
@@ -758,4 +758,4 @@ DimPlot(so_astro_final, reduction = "tsne", pt.size = 0.001) + theme(aspect.rati
 
 VlnPlot(so_astro_final, features = c("Aqp4", "Gfap", "Fgfr3", "Cldn10", "Gja1", "Aldh1l1", "Slc1a3", "Slc1a2"), pt.size = 0)
 
-FeaturePlot(so_astro_final, features = c("Ifit3m"), reduction = "tsne", pt.size = 0.001) + theme(aspect.ratio = 1)
+FeaturePlot(so_astro_final, features = c("Igtp"), reduction = "tsne", pt.size = 0.001) + theme(aspect.ratio = 1)

@@ -1,4 +1,4 @@
-#pipeline prepared by Jessica S. Sadick
+#pipeline prepared and analysis completed by Jessica S. Sadick
 #majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
 
 #Load packages

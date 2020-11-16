@@ -1,5 +1,8 @@
-#pipeline prepared and analysis completed by Jessica S. Sadick
-#majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+#Pipeline prepared and analysis completed by Jessica S. Sadick
+#Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+
+#---------------------------------------------------------------------------------------------------
+#MERGED OBJECT GENERATION
 
 #Load packages
 library(cowplot)

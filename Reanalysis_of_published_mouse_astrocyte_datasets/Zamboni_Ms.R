@@ -2,8 +2,8 @@
 #Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
 
 #---------------------------------------------------------------------------------------------------
-##DEMULTIPLEX AGGREGATED FILES
-#NOTE: Used filtered dataset, which contains astrocytes and progenitor cells
+#DEMULTIPLEX AGGREGATED FILES
+##NOTE: Used filtered dataset, which contains astrocytes and progenitor cells
 
 #Load libraries
 library(data.table)

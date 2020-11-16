@@ -1,16 +1,18 @@
-#pipeline prepared and Zamboni et al. (2020) data reanalyzed by Jessica S. Sadick
-#majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
-#Load libraries
+#Pipeline prepared and Zamboni et al. (2020) data reanalyzed by Jessica S. Sadick
+#Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
 
+#---------------------------------------------------------------------------------------------------
+##DEMULTIPLEX AGGREGATED FILES
+#NOTE: Used filtered dataset, which contains astrocytes and progenitor cells
+
+#Load libraries
 library(data.table)
 library(Matrix)
 library(dplyr)
 
 setwd("file_path")
 
-#NOTE: Used filtered dataset, which contains astrocytes and progenitor cells
-#DEMULTIPLEX AGGREGATED FILES
-#Rread in aggregated matrix file
+#Read in aggregated matrix file
 mat <- fread("zcat < GSE139842_filtered_10X_gbm.csv.gz")
 
 #Isolate barcodes for each sample, and write to a tsv file

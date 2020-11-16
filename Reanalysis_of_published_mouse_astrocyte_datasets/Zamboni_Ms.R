@@ -91,7 +91,7 @@ mat_inj_hom_2 <- Matrix(as.matrix(mat_inj_hom_2), sparse=TRUE)
 writeMM(obj = mat_inj_hom_2, file="./mat_inj_hom_2.mtx")
 
 #---------------------------------------------------------------------------------------------------
-#SAMPLE QC AND SCE GENERATION
+#SCE OBJECT GENERATION AND QC
 
 #Load libraries
 library(cowplot)

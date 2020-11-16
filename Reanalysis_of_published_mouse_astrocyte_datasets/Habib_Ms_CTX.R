@@ -80,7 +80,7 @@ mat_CRTX_10mAD135 <- Matrix(as.matrix(mat_CRTX_10mAD135), sparse=TRUE)
 writeMM(obj = mat_CRTX_10mAD135, file="./mat_CRTX_10mAD135.mtx")
 
 #---------------------------------------------------------------------------------------------------
-#SAMPLE QC AND SCE OBJECT GENERATION
+#SCE OBJECT GENERATION AND QC
 
 #Load libraries
 library(cowplot)

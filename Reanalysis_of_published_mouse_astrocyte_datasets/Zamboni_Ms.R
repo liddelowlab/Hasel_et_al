@@ -1,5 +1,95 @@
 #pipeline prepared and Zamboni et al. (2020) data reanalyzed by Jessica S. Sadick
 #majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+#Load libraries
+
+library(data.table)
+library(Matrix)
+library(dplyr)
+
+setwd("file_path")
+
+#NOTE: Used filtered dataset, which contains astrocytes and progenitor cells
+#DEMULTIPLEX AGGREGATED FILES
+#Rread in aggregated matrix file
+mat <- fread("zcat < GSE139842_filtered_10X_gbm.csv.gz")
+
+#Isolate barcodes for each sample, and write to a tsv file
+barcodes_healthy_wt <- mat[, grep("healthy_wt_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_healthy_wt, file='./barcodes_healthy_wt.tsv', quote=FALSE,
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_inj_wt <- mat[, grep("inj_wt_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_inj_wt, file='./barcodes_inj_wt.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_healthy_hom <- mat[, grep("healthy_hom_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_healthy_hom, file='./barcodes_healthy_hom.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_inj_hom <- mat[, grep("inj_hom_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_inj_hom, file='./barcodes_inj_hom.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_inj_hom_2 <- mat[, grep('^[A-Z]', colnames(mat[1]), value = TRUE)]
+barcodes_inj_hom_2 <- barcodes_inj_hom_2[2:2642]
+write.table(barcodes_inj_hom_2, file='./barcodes_inj_hom_2.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+#Isolate gene information from original matrix
+genes <- mat[,1][[1]]
+#Isolate gene name
+gene_name <- gsub(".+[|]", "", genes)
+gene_name <- as.data.frame(gene_name)
+#Add gene ENSEMBL ID
+library(biomaRt)
+ensembl <- useMart("ensembl",dataset="mmusculus_gene_ensembl")
+gene_id <- getBM(attributes=c("ensembl_gene_id"),
+                 filters = c("mgi_symbol"),
+                 values = gene_name,
+                 mart = ensembl)
+gene_id <- as.data.frame(gene_id)
+##Concatenate gene ID and gene name in one dataframe
+##NOTE: For downstream processing, feature file must be organized in a 3 column format. Can concatenate gene_name twice as a place holder if EMSEMBL ID conversion is not ideal
+features <- cbind(gene_id,gene_name)
+##Add "Gene Expression" column
+features["new.col"] <- c("Gene Expression")
+##Write to tsv file
+write.table(features, file='./features.tsv', quote=FALSE,
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+#Subset matrix by sample
+mat_healthy_wt <- select(mat, contains("healthy_wt_"))
+mat_inj_wt <- select(mat, contains("inj_wt_"))
+mat_healthy_hom <- select(mat, contains("healthy_hom_"))
+mat_inj_hom <- select(mat, contains("inj_hom_"))
+mat_inj_hom_2 <- select(mat, -contains(c("healthy_wt_", "inj_wt_", "healthy_hom_", "inj_hom_", "V1")))
+
+#Write each new subset to new matrix file
+##Remove column and row names
+names(mat_healthy_wt) = NULL
+##Convert dataframe to sparse matrix
+mat_healthy_wt <- Matrix(as.matrix(mat_healthy_wt), sparse=TRUE)
+##Write sparse matrix to file
+writeMM(obj = mat_healthy_wt, file="./mat_healthy_wt.mtx")
+
+names(mat_inj_wt) = NULL
+mat_inj_wt <- Matrix(as.matrix(mat_inj_wt), sparse=TRUE)
+writeMM(obj = mat_inj_wt, file="./mat_inj_wt.mtx")
+
+names(mat_healthy_hom) = NULL
+mat_healthy_hom <- Matrix(as.matrix(mat_healthy_hom), sparse=TRUE)
+writeMM(obj = mat_healthy_hom, file="./mat_healthy_hom.mtx")
+
+names(mat_inj_hom) = NULL
+mat_inj_hom <- Matrix(as.matrix(mat_inj_hom), sparse=TRUE)
+writeMM(obj = mat_inj_hom, file="./mat_inj_hom.mtx")
+
+names(mat_inj_hom_2) = NULL
+mat_inj_hom_2 <- Matrix(as.matrix(mat_inj_hom_2), sparse=TRUE)
+writeMM(obj = mat_inj_hom_2, file="./mat_inj_hom_2.mtx")
+
+#---------------------------------------------------------------------------------------------------
+#SAMPLE QC AND SCE GENERATION
 
 #Load libraries
 library(cowplot)

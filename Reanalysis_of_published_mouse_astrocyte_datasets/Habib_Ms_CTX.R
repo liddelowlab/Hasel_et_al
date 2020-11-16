@@ -1,5 +1,8 @@
-#pipeline prepared and Habib et al. (2020) data reanalyzed by Jessica S. Sadick
-#majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+#Pipeline prepared and Habib et al. (2020) data reanalyzed by Jessica S. Sadick
+#Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+
+#---------------------------------------------------------------------------------------------------
+#DEMULTIPLEX AGGREGATED FILES
 
 #Load libraries
 library(data.table)
@@ -8,7 +11,6 @@ library(dplyr)
 
 setwd("~/file_path")
 
-#DEMULTIPLEX AGGREGATED FILES
 #Read in aggregated matrix file
 mat <- fread("zcat < GSE143758_Admouse_Crtx_7-10m_Astrocytes_UMIcounts.csv.gz")
 
@@ -43,7 +45,7 @@ gene_id <- getBM(attributes=c("ensembl_gene_id"),
                  mart = ensembl)
 gene_id <- as.data.frame(gene_id)
 ##Concatenate gene ID and gene name in one dataframe
-##NOTE: For downstream processing, feature file must be organized in a 3 column format. Can concatenate gene_name twice as a place holder if EMSEMBL ID conversion is not ideal
+##NOTE: For downstream processing, feature file must be organized in a 2 column format. Can concatenate gene_name twice as a place holder if EMSEMBL ID conversion is not ideal
 features <- cbind(gene_id,gene_name)
 ##Add "Gene Expression" column
 features["new.col"] <- c("Gene Expression")

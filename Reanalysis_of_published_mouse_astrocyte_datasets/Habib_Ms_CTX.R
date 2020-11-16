@@ -2,6 +2,85 @@
 #majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
 
 #Load libraries
+library(data.table)
+library(Matrix)
+library(dplyr)
+
+setwd("~/file_path")
+
+#DEMULTIPLEX AGGREGATED FILES
+#Read in aggregated matrix file
+mat <- fread("zcat < GSE143758_Admouse_Crtx_7-10m_Astrocytes_UMIcounts.csv.gz")
+
+#Isolate barcodes for each sample, and write to a tsv file
+barcodes_CRTX_7mWT341 <- mat[, grep("CRTX_7mWT341_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_CRTX_7mWT341, file='./barcodes_CRTX_7mWT341.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_CRTX_7mAD343 <- mat[, grep("CRTX_7mAD343_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_CRTX_7mAD343, file='./barcodes_CRTX_7mAD343.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_CRTX_10mWT124 <- mat[, grep("CRTX_10mWT124_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_CRTX_10mWT124, file='./barcodes_CRTX_10mWT124.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+barcodes_CRTX_10mAD135 <- mat[, grep("CRTX_10mAD135_", colnames(mat[1]), value = TRUE)]
+write.table(barcodes_CRTX_10mAD135, file='./barcodes_CRTX_10mAD135.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+#Isolate gene information from original matrix
+genes <- mat[,1][[1]]
+##Isolate gene name
+gene_name <- gsub(".+[|]", "", genes)
+gene_name <- as.data.frame(gene_name)
+##Add gene ENSEMBL ID
+library(biomaRt)
+ensembl <- useMart("ensembl",dataset="mmusculus_gene_ensembl")
+gene_id <- getBM(attributes=c("ensembl_gene_id"),
+                 filters = c("mgi_symbol"),
+                 values = gene_name, 
+                 mart = ensembl)
+gene_id <- as.data.frame(gene_id)
+##Concatenate gene ID and gene name in one dataframe
+##NOTE: For downstream processing, feature file must be organized in a 3 column format. Can concatenate gene_name twice as a place holder if EMSEMBL ID conversion is not ideal
+features <- cbind(gene_id,gene_name)
+##Add "Gene Expression" column
+features["new.col"] <- c("Gene Expression")
+##Write to tsv file
+write.table(features, file='./features.tsv', quote=FALSE, 
+            sep='\t', col.names = FALSE, row.names = FALSE)
+
+#Subset matrix by sample
+mat_CRTX_7mWT341 <- select(mat, contains("CRTX_7mWT341_"))
+mat_CRTX_7mAD343 <- select(mat, contains("CRTX_7mAD343_"))
+mat_CRTX_10mWT124 <- select(mat, contains("CRTX_10mWT124_"))
+mat_CRTX_10mAD135 <- select(mat, contains("CRTX_10mAD135_"))
+
+#Write each new subset to new matrix file
+##Remove column and row names
+names(mat_CRTX_7mWT341) = NULL
+##Convert dataframe to sparse matrix
+mat_CRTX_7mWT341 <- Matrix(as.matrix(mat_CRTX_7mWT341), sparse=TRUE)
+##Write sparse matrix to file
+writeMM(obj = mat_CRTX_7mWT341, file="./mat_CRTX_7mWT341.mtx")
+
+names(mat_CRTX_7mAD343) = NULL
+mat_CRTX_7mAD343 <- Matrix(as.matrix(mat_CRTX_7mAD343), sparse=TRUE)
+writeMM(obj = mat_CRTX_7mAD343, file="./mat_CRTX_7mAD343.mtx")
+
+names(mat_CRTX_10mWT124) = NULL
+mat_CRTX_10mWT124 <- Matrix(as.matrix(mat_CRTX_10mWT124), sparse=TRUE)
+writeMM(obj = mat_CRTX_10mWT124, file="./mat_CRTX_10mWT124.mtx")
+
+names(mat_CRTX_10mAD135) = NULL
+mat_CRTX_10mAD135 <- Matrix(as.matrix(mat_CRTX_10mAD135), sparse=TRUE)
+writeMM(obj = mat_CRTX_10mAD135, file="./mat_CRTX_10mAD135.mtx")
+
+#---------------------------------------------------------------------------------------------------
+#SAMPLE QC AND SCE OBJECT GENERATION
+
+#Load libraries
 library(cowplot)
 library(ggplot2)
 library(scater)

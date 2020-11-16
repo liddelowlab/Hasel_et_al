@@ -2,7 +2,7 @@
 #Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
 
 #---------------------------------------------------------------------------------------------------
-#SAMPLE QC AND SCE OBJECT GENERATION
+#SCE OBJECT GENERATION AND QC
 
 #Load relevant libraries
 library(cowplot)

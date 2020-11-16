@@ -1,5 +1,8 @@
-#pipeline prepared and Wheeler et al. (2020) data reanalyzed by Jessica S. Sadick
-#majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+#Pipeline prepared and Wheeler et al. (2020) data reanalyzed by Jessica S. Sadick
+#Majority of pipeline based on code originally deposited by https://github.com/HelenaLC and published in doi.org/10.1101/713412
+
+#---------------------------------------------------------------------------------------------------
+#SAMPLE QC AND SCE OBJECT GENERATION
 
 #Load relevant libraries
 library(cowplot)

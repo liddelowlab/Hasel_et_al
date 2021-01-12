@@ -1,7 +1,7 @@
 # Hasel_et_al.
 ALL the mouse astrocytes!
 
-Libraries (invluding version) used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: Hasel et al. XXXX
+Libraries (including version) used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: Hasel et al. XXXX
 
 # Code
 Included is the github libraries and code necessary to replicate the Seurat objects used for analysis. The following versions of individual software/packages were used for analysis:

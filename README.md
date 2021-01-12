@@ -1,4 +1,4 @@
-# Hasel_et_al.
+# Hasel_et_al. XXXX, XXXX
 ALL the mouse astrocytes!
 
 Libraries (including version) used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: Hasel et al. XXXX

@@ -21,6 +21,13 @@ Included is the code necessary to replicate the Seurat objects used for analysis
 - Seurat 3.1.5
 - SingleCellExperiment 1.8.0
 - viridis 0.5.1
+- muscat 0.99.9
+- limma 3.41.16
+- magrittr 1.5
+- CATALYST 1.9.8
+- cluster 2.1.0
+- UpSetR 1.4.0
+- VennDiagram 1.6.20
 
 # Code included in repository:
 *list names of R scripts here*

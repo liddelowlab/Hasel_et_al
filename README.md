@@ -1,10 +1,10 @@
 # Hasel_et_al.
 ALL the mouse astrocytes!
 
-Code used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: XXX
+Libraries (invluding version) used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: Hasel et al. XXXX
 
 # Code
-Included is the code necessary to replicate the Seurat objects used for analysis. The following versions of individual software/packages were used for analysis:
+Included is the github libraries and code necessary to replicate the Seurat objects used for analysis. The following versions of individual software/packages were used for analysis:
 
 - R 3.6.2
 - ComplexHeatmap 2.2.0
@@ -30,7 +30,7 @@ Included is the code necessary to replicate the Seurat objects used for analysis
 - VennDiagram 1.6.20
 
 # Code included in repository:
-*list names of R scripts here*
+No custom code included in analysis pipelines.
 
 # Data
 The original data analyzed in this project can be directly downloaded from the following source: XXX

@@ -6,34 +6,31 @@ Libraries (including version) used to analyze single cell RNASeq (scRNAseq) astr
 # Code
 Included is the github libraries and code necessary to replicate the Seurat objects used for analysis. The following versions of individual software/packages were used for analysis:
 
-R 3.6.2
-scds 1.1.2
-scater v1.13.23
-SpaceRanger v1.2.0
-edgeR v3.27.13
-Cell Ranger v3.0.2
-CATALYST 1.9.8
-UpSetR 1.4.0
-ComplexHeatmap v2.1.0
-OnRamp
-ggplot2 v3.2.1
-dplyr v0.8.3
-purrr v0.3.3
-RColorBrewer v1.1-2
-viridis v0.5.1
-scran v1.13.25
-Seurat v3.1.0
-SingleCellExperiment v1.7.11
-muscat v0.99.9
-circlize v0.4.8
-VennDiagram v1.6.20
-HISAT2 v.2.1.0
-StringTie v2.1.1
-DESeq2 v2.11.40.6
-Prism8 v8.2.1
-Microsoft Excel v16.14.1
-ImageJ/Fiji v2.0.0-rc-69/1.52p
-LSD v4.0-0
+- R 3.6.2
+- scds 1.1.2
+- scater v1.13.23
+- SpaceRanger v1.2.0
+- edgeR v3.27.13
+- Cell Ranger v3.0.2
+- CATALYST 1.9.8
+- UpSetR 1.4.0
+- ComplexHeatmap v2.1.0
+- ggplot2 v3.2.1
+- dplyr v0.8.3
+- purrr v0.3.3
+- RColorBrewer v1.1-2
+- viridis v0.5.1
+- scran v1.13.25
+- Seurat v3.1.0
+- SingleCellExperiment v1.7.11
+- muscat v0.99.9
+- circlize v0.4.8
+- VennDiagram v1.6.20
+- HISAT2 v.2.1.0
+- StringTie v2.1.1
+- DESeq2 v2.11.40.6
+- Prism8 v8.2.1
+- LSD v4.0-0
 
 # Code included in repository:
 No custom code included in analysis pipelines.

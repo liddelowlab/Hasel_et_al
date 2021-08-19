@@ -1,4 +1,4 @@
-# Hasel_et_al. XXXX, XXXX
+# Hasel_et_al. 2021, Nature Neuroscience (https://www.nature.com/articles/s41593-021-00905-6)
 ALL the mouse astrocytes!
 
 Libraries (including version) used to analyze single cell RNASeq (scRNAseq) astrocyte data included in: Hasel et al. XXXX
